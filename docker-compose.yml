@@ -1,0 +1,10 @@
+version: '2'
+services:
+  neo:
+    image: "neo4j"
+    ports:
+     - "7687:7687"
+     - "7474:7474"
+    volumes:
+     - ./data:/data
+     - ./import:/var/lib/neo4j/import

@@ -1,0 +1,18 @@
+USING PERIODIC COMMIT
+LOAD CSV WITH HEADERS FROM 'file:///jobnodes.csv' AS row
+WITH row WHERE row.yrkeskode IS NOT NULL
+MERGE (c:yrke {yrkeskode: row.yrkeskode, yrkestittel: row.yrke})
+
+CREATE INDEX ON :yrke(yrkeskode)
+
+USING PERIODIC COMMIT 5000
+LOAD CSV WITH HEADERS FROM 'file:///orgnodes.csv' AS row
+WITH row WHERE row.orgnr IS NOT NULL 
+MERGE (f:foretak {orgnr: row.orgnr, navn:row.foretak_navn, naring_kode: row.nkode1, naring_tekst: row.naerk_tekst, antall_ansatte: row.ansatte_antall})
+
+CREATE INDEX ON :foretak(orgnr)
+
+USING PERIODIC COMMIT 5000 
+LOAD CSV WITH HEADERS FROM 'file:///edges.csv' AS line 
+MATCH (f:foretak {orgnr: line.orgnr}), (y:yrke  {yrkeskode: line.yrkeskode}) 
+CREATE (f)-[:trenger {antall: line.antall_stillinger}]->(y);
