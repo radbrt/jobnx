@@ -8,6 +8,6 @@ The graph is fairly simple, with two node types (occupations and companies), and
 ## How-to
 Start the docker image by running the docker-compose file. The compose-file will automatically link the folder containing the database to your local filesystem (the /data folder will be populated) and the folder designated for file imports.
 
-The node- and edgefiles are already placed in the import folder, but in order to import them you have to run the commands in the `commands.txt` file one by one through the neo4j command line. A later version might include a command to populate the database automatically.
+The node- and edgefiles are already placed in the import folder, but in order to import them you have to run the commands in the `commands.txt` file one by one through the neo4j command line. The data, when loaded into neo4j, is over 70MB, which is a lot more than the few megabytes of the node- and edgefiles.
 
 you will find the neo4j browser at http://localhost:7474, and the default username/password is neo4j/neo4j.
