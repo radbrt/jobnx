@@ -5,7 +5,7 @@ This repo is for creating a neo4j container and import a graph of occupations an
 
 The graph is fairly simple, with two node types (occupations and companies), and directed links (as they must be in neo4j) from companies to the occupations they advertise for. Most of the interesting analysis to do on this data does not necssitate a graph database, but, well, it's fun and looks cool.
 
-## How-to
+## How to get started
 
 Start the docker image by running the docker-compose file. The graph will already be loaded in the /data folder, but when logging in you will be asked to change the default password before you can start querying the graph.
 
